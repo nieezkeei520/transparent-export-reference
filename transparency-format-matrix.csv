@@ -1,0 +1,7 @@
+﻿Format,Media,Keeps transparency?,How verified,Source
+PNG,image,Yes,PNG supports an alpha channel natively; the tool FAQ states PNG preserves the transparent background,greenscreencut.com/transparent-background — FAQ "Which formats keep the transparency?"
+JPG,image,No,The tool FAQ states "JPG cannot — it flattens to a solid color",greenscreencut.com/transparent-background — FAQ "Which formats keep the transparency?"
+Transparent WebM (VP8/VP9),video,Yes — in a browser / WebM-VP9-capable player,Rendered on a pure magenta background the page shows through (alpha intact); ffprobe reports TAG:alpha_mode=1 on the exported file,magenta render test + ffprobe (this repo, webm-alpha-verification.md)
+Transparent WebM (VP8/VP9),video,No — on a default command-line decode,ffmpeg -i file.webm frame.png produced pix_fmt=rgb24 with a black background (alpha dropped),ffmpeg decode test (this repo, webm-alpha-verification.md)
+PNG-sequence (.zip),video,Yes,The tool FAQ states "WebM or a PNG-sequence zip for video both preserve the transparent background",greenscreencut.com/transparent-background — FAQ "Which formats keep the transparency?"
+MP4 (H.264/H.265, yuv),video,No (not tested here),Not covered by the tool; a standard yuv MP4 has no alpha plane — inferred from general format behavior, not measured by this repo,inferred (general format knowledge), not tested
